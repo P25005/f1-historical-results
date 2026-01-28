@@ -1,0 +1,116 @@
+<div class="min-vh-100 pb-5">
+    <!-- TOP NAVIGATION BAR -->
+    <header class="d-flex justify-content-between align-items-center px-4 py-3 border-bottom border-glass mb-4">
+        <div class="d-flex align-items-center gap-3">
+            <div class="bg-neon-red" style="width: 8px; height: 32px;"></div>
+            <h1 class="fs-5 fw-bold text-uppercase tracking-wide mb-0">Results Hub</h1>
+        </div>
+        <nav class="d-flex gap-4">
+            <a routerLink="/home" class="small text-white-50 text-decoration-none"
+                style="letter-spacing: 0.2em; font-size: 10px;">HOME</a>
+            <span class="small text-neon-cyan text-uppercase"
+                style="letter-spacing: 0.2em; font-size: 10px;">Archive</span>
+        </nav>
+    </header>
+
+    <main class="container" style="max-width: 1400px;">
+        <!-- FILTERS PANEL -->
+        <section class="row g-3 mb-5">
+            <div class="col-md-6">
+                <div class="glass-panel p-4 rounded-3 h-100">
+                    <label class="text-white-50 text-uppercase mb-3 d-block"
+                        style="font-size: 10px; letter-spacing: 0.15em;">Select Season</label>
+                    <select class="form-select border-0 text-white"
+                        style="background: rgba(255,255,255,0.05); border-radius: 8px;" [(ngModel)]="selectedYear"
+                        (change)="loadRaces()">
+                        <option *ngFor="let year of years" [value]="year" class="bg-dark">{{ year }}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="glass-panel p-4 rounded-3 h-100">
+                    <label class="text-white-50 text-uppercase mb-3 d-block"
+                        style="font-size: 10px; letter-spacing: 0.15em;">Select Race</label>
+                    <select class="form-select border-0 text-white"
+                        style="background: rgba(255,255,255,0.05); border-radius: 8px;" [(ngModel)]="selectedSessionKey"
+                        (change)="loadResults()">
+                        <option value="" disabled selected class="bg-dark">Choose a race...</option>
+                        <option *ngFor="let r of races" [value]="r.session_key" class="bg-dark">
+                            {{ r.country_name }} - {{ r.circuit_short_name }} ({{ r.date_start | date:'shortDate' }})
+                        </option>
+                    </select>
+                </div>
+            </div>
+        </section>
+
+        <!-- LOADING SPINNER -->
+        <div class="d-flex justify-content-center py-5" *ngIf="loading">
+            <div class="spinner-border text-neon-red" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+        </div>
+
+        <!-- RESULTS TABLE -->
+        <section *ngIf="results.length > 0 && !loading">
+            <div class="d-flex justify-content-between align-items-baseline mb-4" *ngIf="raceInfo">
+                <h3 class="small fw-bold text-uppercase text-white-50" style="letter-spacing: 0.25em;">
+                    {{ raceInfo.session_name }} Classification
+                </h3>
+                <span class="text-white-50" style="font-size: 10px;">{{ raceInfo.location }}</span>
+            </div>
+
+            <div class="table-responsive">
+                <table class="table table-dark table-hover mb-0">
+                    <thead>
+                        <tr class="text-white-50 border-bottom border-secondary border-opacity-25"
+                            style="font-size: 11px; letter-spacing: 0.1em;">
+                            <th class="fw-normal py-3 px-3">POS</th>
+                            <th class="fw-normal py-3 px-3">DRIVER</th>
+                            <th class="fw-normal py-3 px-3">TEAM</th>
+                            <th class="fw-normal py-3 px-3">BEST LAP</th>
+                            <th class="fw-normal py-3 px-3 text-end">PTS</th>
+                            <th class="fw-normal py-3 px-3 text-end" style="width: 50px;"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let res of results"
+                            class="border-bottom border-secondary border-opacity-10 align-middle">
+                            <td class="py-3 px-3">
+                                <span class="badge rounded-pill" [ngClass]="{
+                                    'bg-warning text-dark': res.position === 1,
+                                    'bg-light text-dark': res.position === 2,
+                                    'bg-secondary text-white': res.position === 3,
+                                    'bg-dark text-white-50': res.position > 3
+                                }">{{ res.position }}</span>
+                            </td>
+                            <td class="py-3 px-3 fw-bold">{{ res.full_name }}</td>
+                            <td class="py-3 px-3 text-white-50">{{ res.team_name }}</td>
+                            <td class="py-3 px-3 text-white-50 font-monospace" style="font-size: 13px;">{{
+                                res.fastestLap || '--' }}</td>
+                            <td class="py-3 px-3 text-end fw-bold text-neon-red">{{ res.points }}</td>
+                            <td class="py-3 px-3 text-end">
+                                <a [routerLink]="['/race', selectedYear, selectedSessionKey]" class="text-white-50 p-1">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor"
+                                        class="bi bi-chevron-right" viewBox="0 0 16 16">
+                                        <path fill-rule="evenodd"
+                                            d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
+                                    </svg>
+                                </a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- EMPTY STATES -->
+        <div class="glass-panel p-5 rounded-3 text-center"
+            *ngIf="results.length === 0 && !loading && selectedSessionKey">
+            <p class="text-white-50 mb-0">No results available for this session yet.</p>
+        </div>
+
+        <div class="glass-panel p-5 rounded-3 text-center" *ngIf="!selectedSessionKey && !loading">
+            <p class="text-white-50 mb-0">Select a season and race to view official FIA results.</p>
+        </div>
+    </main>
+</div>

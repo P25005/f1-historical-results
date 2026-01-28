@@ -1,0 +1,42 @@
+/* F1 Results Hub - Bootstrap Override Styles */
+
+/* Glass panels */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.02) !important;
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.05) !important;
+}
+
+/* Table overrides for dark theme */
+.table-dark {
+  --bs-table-bg: transparent;
+  --bs-table-hover-bg: rgba(255, 255, 255, 0.02);
+  --bs-table-border-color: rgba(255, 255, 255, 0.05);
+}
+
+/* Custom colors */
+.text-neon-red {
+  color: #ff1801 !important;
+}
+
+.text-neon-cyan {
+  color: #00f3ff !important;
+}
+
+.bg-neon-red {
+  background-color: #ff1801 !important;
+}
+
+.bg-neon-cyan {
+  background-color: #00f3ff !important;
+}
+
+/* Border glass effect */
+.border-glass {
+  border-color: rgba(255, 255, 255, 0.05) !important;
+}
+
+/* Body override */
+body {
+  background-color: rgb(5, 5, 5) !important;
+}

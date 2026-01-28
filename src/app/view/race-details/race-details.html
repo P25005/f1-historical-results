@@ -1,0 +1,85 @@
+<div class="min-vh-100 pb-5">
+    <!-- TOP NAVIGATION BAR -->
+    <header class="d-flex justify-content-between align-items-center px-4 py-3 border-bottom border-glass mb-4">
+        <div class="d-flex align-items-center gap-3">
+            <div class="bg-neon-red" style="width: 8px; height: 32px;"></div>
+            <h1 class="fs-5 fw-bold text-uppercase tracking-wide mb-0">Results Hub</h1>
+        </div>
+        <nav class="d-flex gap-4">
+            <a routerLink="/home" class="small text-white-50 text-decoration-none"
+                style="letter-spacing: 0.2em; font-size: 10px;">HOME</a>
+            <a routerLink="/history" class="small text-white-50 text-decoration-none"
+                style="letter-spacing: 0.2em; font-size: 10px;">ARCHIVE</a>
+        </nav>
+    </header>
+
+    <main class="container" style="max-width: 1000px;">
+        <!-- LOADING SPINNER -->
+        <div class="d-flex flex-column align-items-center justify-content-center py-5" *ngIf="!raceData">
+            <div class="spinner-border text-neon-red mb-3" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+            <p class="text-white-50 small tracking-widest text-uppercase">GATHERING TELEMETRY...</p>
+        </div>
+
+        <!-- RACE HEADER INFO -->
+        <section *ngIf="raceData" class="mb-5 animate-fade-in">
+            <div class="glass-panel p-5 rounded-4 border-start border-neon-red border-4">
+                <div class="row align-items-center">
+                    <div class="col-md-8">
+                        <span class="text-neon-red fw-bold text-uppercase mb-2 d-block"
+                            style="letter-spacing: 0.3em; font-size: 12px;">
+                            OFFICIAL SESSION DATA
+                        </span>
+                        <h1 class="display-4 fw-black text-uppercase mb-3">{{ raceData.session_name }}</h1>
+                        <div class="d-flex align-items-center gap-3 text-white-50">
+                            <span class="fs-5">{{ raceData.circuit_short_name }}</span>
+                            <div class="vr bg-white opacity-25" style="height: 20px;"></div>
+                            <span class="fs-5">{{ raceData.country_name }}</span>
+                        </div>
+                    </div>
+                    <div class="col-md-4 text-md-end mt-4 mt-md-0">
+                        <div class="d-inline-block text-start">
+                            <label class="small text-white-50 text-uppercase d-block mb-1"
+                                style="letter-spacing: 0.1em;">Session Date</label>
+                            <span class="fs-4 fw-bold text-white">{{ raceData.date_start | date:'longDate' }}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- GRID INF OCARDS -->
+        <section *ngIf="raceData" class="row g-4 mb-5">
+            <div class="col-md-4">
+                <div class="glass-panel p-4 rounded-3 h-100 border-bottom border-neon-cyan border-opacity-50">
+                    <label class="text-white-50 text-uppercase mb-2 d-block"
+                        style="font-size: 10px; letter-spacing: 0.2em;">Season</label>
+                    <span class="fs-3 fw-bold text-neon-cyan">{{ raceData.year }}</span>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="glass-panel p-4 rounded-3 h-100 border-bottom border-warning border-opacity-50">
+                    <label class="text-white-50 text-uppercase mb-2 d-block"
+                        style="font-size: 10px; letter-spacing: 0.2em;">Location</label>
+                    <span class="fs-5 fw-bold text-white">{{ raceData.location }}</span>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="glass-panel p-4 rounded-3 h-100 border-bottom border-neon-green border-opacity-50">
+                    <label class="text-white-50 text-uppercase mb-2 d-block"
+                        style="font-size: 10px; letter-spacing: 0.2em;">Status</label>
+                    <span class="fs-5 fw-bold text-neon-green">Official Result</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- BACK ACTION -->
+        <div class="text-center" *ngIf="raceData">
+            <a routerLink="/history" class="btn btn-outline-light px-5 py-3 rounded-pill text-uppercase fw-bold"
+                style="letter-spacing: 0.2em; font-size: 11px; border: 1px solid rgba(255,255,255,0.1);">
+                ← Back to Archive
+            </a>
+        </div>
+    </main>
+</div>

@@ -1,0 +1,217 @@
+<div class="min-vh-100" *ngIf="lastSession">
+
+    <!-- HEADER -->
+    <header class="d-flex justify-content-between align-items-center px-4 py-3 border-bottom border-glass">
+        <div class="d-flex align-items-center gap-3">
+            <div class="bg-neon-red" style="width: 8px; height: 32px;"></div>
+            <h1 class="fs-5 fw-bold text-uppercase tracking-wide mb-0">Results Hub</h1>
+        </div>
+        <nav class="d-flex gap-4">
+            <span class="small text-uppercase text-white-50" style="letter-spacing: 0.2em; font-size: 10px;">
+                Season {{ lastSession.year }}
+            </span>
+            <a routerLink="/history" class="small text-white-50 text-decoration-none"
+                style="letter-spacing: 0.2em; font-size: 10px;">ARCHIVE</a>
+        </nav>
+    </header>
+
+    <main class="container py-5" style="max-width: 1400px;">
+
+        <!-- HERO: WINNER -->
+        <section class="mb-5">
+            <div class="glass-panel rounded-4 p-5 position-relative overflow-hidden">
+                <!-- Glow effect -->
+                <div class="position-absolute"
+                    style="top: -100px; right: -100px; width: 400px; height: 400px; background: rgba(255, 24, 1, 0.1); filter: blur(120px); border-radius: 50%;">
+                </div>
+
+                <div class="position-relative" style="z-index: 2;">
+                    <div class="d-flex align-items-center gap-3 mb-4">
+                        <span class="text-neon-red fw-bold text-uppercase"
+                            style="letter-spacing: 0.15em; font-size: 12px;">Race Winner</span>
+                        <div class="bg-neon-red opacity-25" style="width: 50px; height: 1px;"></div>
+                    </div>
+
+                    <h2 class="display-1 fw-bold fst-italic text-uppercase mb-4"
+                        style="line-height: 0.9; letter-spacing: -2px;" *ngIf="winner?.Driver">
+                        {{ winner.Driver.full_name }}
+                    </h2>
+
+                    <div class="d-flex flex-wrap align-items-center gap-4 mt-4" *ngIf="winner?.Driver">
+                        <div>
+                            <p class="text-white-50 text-uppercase mb-1"
+                                style="font-size: 10px; letter-spacing: 0.15em;">Constructor</p>
+                            <p class="fs-5 fw-bold mb-0">{{ winner.Driver.team_name }}</p>
+                        </div>
+                        <div class="vr bg-white opacity-10" style="height: 40px;"></div>
+                        <div>
+                            <p class="text-white-50 text-uppercase mb-1"
+                                style="font-size: 10px; letter-spacing: 0.15em;">Points</p>
+                            <p class="fs-5 fw-bold text-neon-cyan mb-0">{{ winner.points }} PTS</p>
+                        </div>
+                        <div class="vr bg-white opacity-10" style="height: 40px;"></div>
+                        <div>
+                            <p class="text-white-50 text-uppercase mb-1"
+                                style="font-size: 10px; letter-spacing: 0.15em;">Grand Prix</p>
+                            <p class="fs-5 fw-bold text-uppercase mb-0">{{ lastSession.country_name }} GP</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- STATS GRID -->
+        <section class="row g-3 mb-5">
+            <div class="col-md-3">
+                <div class="glass-panel p-4 rounded-3 h-100 d-flex flex-column justify-content-between">
+                    <span class="text-white-50 text-uppercase" style="font-size: 10px; letter-spacing: 0.15em;">Air
+                        Temperature</span>
+                    <div class="mt-2">
+                        <p class="fs-4 fw-bold mb-1">{{ airTemp }}</p>
+                        <p class="text-neon-cyan text-uppercase fw-bold mb-0" style="font-size: 10px;">
+                            Atmospheric
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="glass-panel p-4 rounded-3 h-100 d-flex flex-column justify-content-between">
+                    <span class="text-white-50 text-uppercase" style="font-size: 10px; letter-spacing: 0.15em;">Track
+                        Conditions</span>
+                    <div class="mt-2">
+                        <p class="fs-4 fw-bold mb-1">{{ trackTemp }}</p>
+                        <p class="text-white-50 text-uppercase mb-0" style="font-size: 10px;">{{ humidity }} Humidity
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="glass-panel p-4 rounded-3 h-100 d-flex flex-column justify-content-between">
+                    <span class="text-white-50 text-uppercase" style="font-size: 10px; letter-spacing: 0.15em;">Grid
+                        Status</span>
+                    <div class="mt-2">
+                        <p class="fs-4 fw-bold mb-1">{{ gridSize }}</p>
+                        <p class="text-white-50 text-uppercase mb-0" style="font-size: 10px;">Race Participants</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="glass-panel p-4 rounded-3 h-100 d-flex flex-column justify-content-between">
+                    <span class="text-white-50 text-uppercase"
+                        style="font-size: 10px; letter-spacing: 0.15em;">Circuit</span>
+                    <div class="mt-2">
+                        <p class="fs-4 fw-bold mb-1" *ngIf="lastSession">{{ lastSession.circuit_short_name }}</p>
+                        <p class="text-white-50 text-uppercase mb-0" style="font-size: 10px;" *ngIf="lastSession">{{
+                            lastSession.location }}</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CLASSIFICATION TABLE -->
+        <section>
+            <div class="d-flex justify-content-between align-items-baseline mb-4">
+                <h3 class="small fw-bold text-uppercase text-white-50" style="letter-spacing: 0.25em;">Full Race
+                    Classification</h3>
+                <span class="text-white-50" style="font-size: 10px;" *ngIf="totalLaps !== '--'">{{ totalLaps }} Laps
+                    Completed</span>
+            </div>
+
+            <div class="table-responsive">
+                <table class="table table-dark table-hover align-middle mb-0" style="background: transparent;">
+                    <thead>
+                        <tr class="text-white-50 border-bottom border-secondary border-opacity-25"
+                            style="font-size: 11px; letter-spacing: 0.1em;">
+                            <th class="fw-normal py-3 px-3" style="width: 60px;">POS</th>
+                            <th class="fw-normal py-3 px-3">DRIVER</th>
+                            <th class="fw-normal py-3 px-3">CONSTRUCTOR</th>
+                            <th class="fw-normal py-3 px-3">BEST LAP</th>
+                            <th class="fw-normal py-3 px-3 text-end">PTS</th>
+                            <th class="fw-normal py-3 px-3 text-end" style="width: 50px;"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Podium (Top 3) highlight -->
+                        <tr *ngFor="let driver of podium; let i = index"
+                            class="border-bottom border-secondary border-opacity-10 align-middle">
+                            <td class="py-3 px-3">
+                                <span class="badge rounded-pill" [ngClass]="{
+                                        'bg-warning text-dark': i === 0,
+                                        'bg-light text-dark': i === 1,
+                                        'bg-secondary text-white': i === 2
+                                    }">{{ driver.position }}</span>
+                            </td>
+                            <td class="py-3 px-3">
+                                <div class="d-flex align-items-center">
+                                    <div class="me-2 rounded-circle bg-secondary opacity-25"
+                                        style="width: 8px; height: 8px;"></div>
+                                    <span class="fw-bold">{{ driver.Driver?.full_name }}</span>
+                                </div>
+                            </td>
+                            <td class="py-3 px-3 text-white-50">{{ driver.Driver?.team_name }}</td>
+                            <td class="py-3 px-3 text-white-50 font-monospace" style="font-size: 13px;">{{
+                                driver.fastestLap || '--' }}</td>
+                            <td class="py-3 px-3 text-end fw-bold text-neon-red">{{ driver.points }}</td>
+                            <td class="py-3 px-3 text-end">
+                                <a [routerLink]="['/race', lastSession?.year, lastSession?.session_key]"
+                                    class="text-white-50 p-1">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor"
+                                        class="bi bi-chevron-right" viewBox="0 0 16 16">
+                                        <path fill-rule="evenodd"
+                                            d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
+                                    </svg>
+                                </a>
+                            </td>
+                        </tr>
+                        <!-- Rest of Top 10 -->
+                        <tr *ngFor="let driver of top10"
+                            class="border-bottom border-secondary border-opacity-10 align-middle">
+                            <td class="py-3 px-3">
+                                <span class="text-white-50 ms-2">{{ driver.position }}</span>
+                            </td>
+                            <td class="py-3 px-3">
+                                <span class="fw-normal text-white-50">{{ driver.Driver?.full_name }}</span>
+                            </td>
+                            <td class="py-3 px-3 text-white-50" style="font-size: 13px;">{{ driver.Driver?.team_name }}
+                            </td>
+                            <td class="py-3 px-3 text-white-50 font-monospace" style="font-size: 13px;">{{
+                                driver.fastestLap || '--' }}</td>
+                            <td class="py-3 px-3 text-end text-white-50">{{ driver.points }}</td>
+                            <td class="py-3 px-3 text-end">
+                                <a [routerLink]="['/race', lastSession?.year, lastSession?.session_key]"
+                                    class="text-white-50 p-1">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor"
+                                        class="bi bi-chevron-right" viewBox="0 0 16 16">
+                                        <path fill-rule="evenodd"
+                                            d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
+                                    </svg>
+                                </a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- FOOTER -->
+        <footer
+            class="mt-5 pt-4 border-top border-glass d-flex flex-column flex-md-row justify-content-between align-items-center gap-3"
+            style="font-size: 10px;">
+            <p class="text-white-50 text-uppercase mb-0" style="letter-spacing: 0.15em;">© 2025 F1 Results Hub - OpenF1
+                Data</p>
+            <div class="d-flex gap-4">
+                <span class="d-flex align-items-center gap-2 text-white-50">
+                    <span class="rounded-circle bg-neon-cyan" style="width: 6px; height: 6px;"></span>
+                    LIVE DATA ACTIVE
+                </span>
+            </div>
+        </footer>
+
+    </main>
+</div>
+
+<!-- Loading -->
+<div class="d-flex justify-content-center align-items-center min-vh-100" *ngIf="!lastSession"
+    style="background: #050505;">
+    <p class="text-white-50">Connecting to OpenF1...</p>
+</div>
