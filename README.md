@@ -11,7 +11,7 @@ Una Single Page Application (SPA) desarrollada en **Angular** que permite explor
 
 ## ✨ Características Principales
 
-[cite_start]Este proyecto fue desarrollado como parte de la práctica *A1.EC5: Serveis Web* del ciclo DAW2[cite: 1, 2], implementando una arquitectura profesional:
+Este proyecto fue desarrollado como parte de la práctica A1.EC5: Serveis Web* del ciclo DAW, implementando una arquitectura profesional:
 
 * **Histórico Completo:** Consulta de resultados de carreras desde 1950.
 * **Detalle por Carrera:** Visualización de puntos, vuelta rápida y podios.
@@ -33,7 +33,7 @@ Si quieres ejecutar este proyecto en local:
 
 1.  Clonar el repositorio:
     ```bash
-    git clone [https://github.com/tu-usuario/f1-historical-stats.git](https://github.com/tu-usuario/f1-historical-stats.git)
+    git clone https://github.com/P25005/f1-historical-results
     ```
 2.  Instalar dependencias:
     ```bash
