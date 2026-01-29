@@ -1,59 +1,52 @@
-# WebServiceProject
+# 🏁 F1 Historical Stats Explorer
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.3.2.
+Una Single Page Application (SPA) desarrollada en **Angular** que permite explorar la historia de la Fórmula 1. La aplicación consume una API pública para ofrecer datos detallados de carreras, pilotos y resultados desde la primera temporada en 1950 hasta hoy.
 
-## Development server
+> 🚀 **Demo Desplegada:** https://f1-historical-results.vercel.app/
 
-To start a local development server, run:
+## 📸 Capturas
 
-```bash
-ng serve
-```
+![Dashboard F1](ruta-a-tu-captura-de-pantalla.png)
+*(Sube una captura a la carpeta del proyecto y enlázala aquí)*
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+## ✨ Características Principales
 
-## Code scaffolding
+[cite_start]Este proyecto fue desarrollado como parte de la práctica *A1.EC5: Serveis Web* del ciclo DAW2[cite: 1, 2], implementando una arquitectura profesional:
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+* **Histórico Completo:** Consulta de resultados de carreras desde 1950.
+* **Detalle por Carrera:** Visualización de puntos, vuelta rápida y podios.
+* [cite_start]**Navegación Dinámica:** Uso de **Angular Router** con subrutas parametrizadas para navegar entre temporadas y detalles de pilotos.
+* [cite_start]**Arquitectura Limpia:** Implementación de **Services** para la inyección de dependencias y comunicación HTTP.
+* [cite_start]**Tipado Estricto:** Uso de **Interfaces** para mapear las respuestas JSON de la API[cite: 35].
 
-```bash
-ng generate component component-name
-```
+## 🛠️ Stack Tecnológico
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+* [cite_start]**Framework:** Angular (v20 Experimental / Latest) 
+* **Lenguaje:** TypeScript
+* [cite_start]**Estilos:** CSS3 (Diseño Responsive) [cite: 30]
+* [cite_start]**Datos:** Consumo de API REST externa (OpenF1 / Ergast API) 
+* [cite_start]**Patrón:** MVC (Modelo-Vista-Controlador) [cite: 48]
 
-```bash
-ng generate --help
-```
+## 🔧 Instalación y Despliegue
 
-## Building
+Si quieres ejecutar este proyecto en local:
 
-To build the project run:
+1.  Clonar el repositorio:
+    ```bash
+    git clone [https://github.com/tu-usuario/f1-historical-stats.git](https://github.com/tu-usuario/f1-historical-stats.git)
+    ```
+2.  Instalar dependencias:
+    ```bash
+    npm install
+    ```
+3.  Ejecutar servidor de desarrollo:
+    ```bash
+    ng serve
+    ```
 
-```bash
-ng build
-```
+## 📄 Contexto Académico
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+[cite_start]Este proyecto cumple con los requerimientos de la asignatura de Entorno Cliente (Institut Caparrella), demostrando el dominio de Bindings, Directivas y comunicación asíncrona con servicios web[cite: 32, 33, 34, 49].
 
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+---
+Hecho con ❤️ y mucho código.
