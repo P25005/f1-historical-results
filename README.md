@@ -6,8 +6,8 @@ Una Single Page Application (SPA) desarrollada en **Angular** que permite explor
 
 ## 📸 Capturas
 
-![Dashboard F1](ruta-a-tu-captura-de-pantalla.png)
-*(Sube una captura a la carpeta del proyecto y enlázala aquí)*
+![Dashboard F1](assetts/main.webp)
+
 
 ## ✨ Características Principales
 
