@@ -15,17 +15,17 @@ Una Single Page Application (SPA) desarrollada en **Angular** que permite explor
 
 * **Histórico Completo:** Consulta de resultados de carreras desde 1950.
 * **Detalle por Carrera:** Visualización de puntos, vuelta rápida y podios.
-* [cite_start]**Navegación Dinámica:** Uso de **Angular Router** con subrutas parametrizadas para navegar entre temporadas y detalles de pilotos.
-* [cite_start]**Arquitectura Limpia:** Implementación de **Services** para la inyección de dependencias y comunicación HTTP.
-* [cite_start]**Tipado Estricto:** Uso de **Interfaces** para mapear las respuestas JSON de la API[cite: 35].
+* **Navegación Dinámica:** Uso de **Angular Router** con subrutas parametrizadas para navegar entre temporadas y detalles de pilotos.
+* **Arquitectura Limpia:** Implementación de **Services** para la inyección de dependencias y comunicación HTTP.
+* **Tipado Estricto:** Uso de **Interfaces** para mapear las respuestas JSON de la API.
 
 ## 🛠️ Stack Tecnológico
 
-* [cite_start]**Framework:** Angular (v20 Experimental / Latest) 
+* **Framework:** Angular (v20 Experimental / Latest) 
 * **Lenguaje:** TypeScript
-* [cite_start]**Estilos:** CSS3 (Diseño Responsive) [cite: 30]
-* [cite_start]**Datos:** Consumo de API REST externa (OpenF1 / Ergast API) 
-* [cite_start]**Patrón:** MVC (Modelo-Vista-Controlador) [cite: 48]
+* **Estilos:** CSS3 (Diseño Responsive)
+* **Datos:** Consumo de API REST externa (OpenF1)
+* **Patrón:** MVC (Modelo-Vista-Controlador)
 
 ## 🔧 Instalación y Despliegue
 
@@ -46,7 +46,5 @@ Si quieres ejecutar este proyecto en local:
 
 ## 📄 Contexto Académico
 
-[cite_start]Este proyecto cumple con los requerimientos de la asignatura de Entorno Cliente (Institut Caparrella), demostrando el dominio de Bindings, Directivas y comunicación asíncrona con servicios web[cite: 32, 33, 34, 49].
+Este proyecto cumple con los requerimientos de la asignatura de Entorno Cliente (Institut Caparrella), demostrando el dominio de Bindings, Directivas y comunicación asíncrona con servicios web
 
----
-Hecho con ❤️ y mucho código.
